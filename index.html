@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="calculator">
+        <input type="text" class="calculator-screen" value="00" readonly />
+        <div class="calculator-keys">
+            <button type="button" class="operator calc-button" value="+" data-number="+">+</button>
+            <button type="button" class="operator calc-button" value="-" data-number="-">-</button>
+            <button type="button" class="operator calc-button" value="*" data-number="*">&times;</button>
+            <button type="button" class="operator calc-button" value="/" data-number="/">&divide;</button>
+
+            <button type="button" class="calc-button" data-number="9">9</button>
+            <button type="button" class="calc-button" data-number="8">8</button>
+            <button type="button" class="calc-button" data-number="7">7</button>
+            <button type="button" class="calc-button" data-number="6">6</button>
+
+            <button type="button" class="calc-button" data-number="2">2</button>
+            <button type="button" class="calc-button" data-number="3">3</button>
+            <button type="button" class="calc-button" data-number="4">4</button>
+            <button type="button" class="calc-button" data-number="5">5</button>
+
+            <button type="button" class="calc-button" data-number="1">1</button>
+            <button type="button" class="calc-button" data-number="0">0</button>
+
+            <button type="button" class="decimal calc-button" data-number="." value=".">.</button>
+            <button type="button" class="all-clear" value="all-clear">AC</button>
+
+
+            <button type="button" class="sin calc-button" data-number="sin(">Sin</button>
+            <button type="button" class="cos calc-button" data-number="cos(">Cos</button>
+            <button type="button" class="tan calc-button" data-number="tan(">Tan</button>
+            <button type="button" class="back-space">⌫</button>
+
+            <button type="button" class="( calc-button" data-number="(">(</button>
+            <button type="button" class=") calc-button" data-number=")">)</button>
+            <button type="button" class="fact calc-button" data-number="!">!</button>
+
+            <button type="button" class="equal-sign" value="=">=</button>
+            <button type="button" class="sq calc-button" data-number="^2">^2</button>
+            <button type="button" class="cu calc-button" data-number="^3">^3</button>
+            <button type="button" class="sq-rt calc-button" data-number="√(">√</button>
+            <button type="button" class="cu-rt calc-button" data-number="∛(">∛</button>
+        </div>
+        <div class="history">
+            <h2>History</h2>
+            <ul id="history-list"></ul>
+        </div>
+    </div>
+    <script>
+        var buttons = document.querySelectorAll(".calc-button")
+        var screen = document.querySelector(".calculator-screen")
+        var equals = document.querySelector(".equal-sign")
+        var clearScreen = document.querySelector(".all-clear")
+        var clearCh = document.querySelector(".back-space")
+
+        function factorial(n) {
+            if (n === 0 || n === 1) return 1;
+            return n * factorial(n - 1);
+        }
+        // function addToHistory(expression, result) {
+        //     let listItem = document.createElement("li");
+        //     listItem.textContent = `${expression} = ${result}`;
+        //     historyList.appendChild(listItem);
+        // }
+
+        buttons.forEach(function (btn) {
+            btn.addEventListener('click', function (event) {
+                // console.log(/(?:\.)(?!.*(?:\+|\-|\*|\/))/.test(screen.value))
+                if (screen.value === "0") {
+
+                    screen.value = event.target.dataset.number;
+                }
+                else if (event.target.dataset.number == '.' && /(?:\.)(?!.*(?:\+|\-|\*|\/))/.test(screen.value)) {
+                    return
+                }
+                else {
+                    screen.value = screen.value + event.target.dataset.number;
+                }
+            })
+        })
+        equals.addEventListener('click', function (event) {
+            try {
+                screen.value = eval(screen.value
+                    .replaceAll('sin', 'Math.sin')
+                    .replaceAll('cos', 'Math.cos')
+                    .replaceAll('tan', 'Math.tan')
+                    .replaceAll('^2', '**2')
+                    .replaceAll('^3', '**3')
+                    .replaceAll('√', 'Math.sqrt')
+                    .replaceAll('∛', 'Math.cbrt')
+                    .replace(/(\d+)!/g, (match, number) => {
+                        return factorial(parseInt(number));
+                    }
+                    ))
+            } catch (error) {
+                screen.value = "Error";
+            }
+        })
+        clearScreen.addEventListener('click', function (event) {
+            screen.value = ""
+        })
+
+
+
+
+
+
+
+        clearCh.addEventListener('click', function (event) {
+            if (screen.value.length <= 1) {
+                screen.value = '0'
+                return
+            }
+            // Remove the last character
+            screen.value = screen.value.slice(0, -1);
+        })
+
+    </script>
+</body>
+
+</html>
