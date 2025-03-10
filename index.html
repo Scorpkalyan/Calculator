@@ -49,27 +49,28 @@
             <button type="button" class="sq-rt calc-button" data-number="√(">√</button>
             <button type="button" class="cu-rt calc-button" data-number="∛(">∛</button>
         </div>
-        <div class="history">
-            <h2>History</h2>
-            <ul id="history-list"></ul>
-        </div>
     </div>
+    <div class="history">
+        <p>History</p>
+        <ul id="history-list"></ul>
+    </div>    
     <script>
         var buttons = document.querySelectorAll(".calc-button")
         var screen = document.querySelector(".calculator-screen")
         var equals = document.querySelector(".equal-sign")
         var clearScreen = document.querySelector(".all-clear")
         var clearCh = document.querySelector(".back-space")
+        var historyList = document.getElementById("history-list")
 
         function factorial(n) {
             if (n === 0 || n === 1) return 1;
             return n * factorial(n - 1);
         }
-        // function addToHistory(expression, result) {
-        //     let listItem = document.createElement("li");
-        //     listItem.textContent = `${expression} = ${result}`;
-        //     historyList.appendChild(listItem);
-        // }
+        function addToHistory(expression, result) {
+            let listItem = document.createElement("li");
+            listItem.textContent = `${expression} = ${result}`;
+            historyList.appendChild(listItem);
+        }
 
         buttons.forEach(function (btn) {
             btn.addEventListener('click', function (event) {
@@ -88,6 +89,8 @@
         })
         equals.addEventListener('click', function (event) {
             try {
+                let expression = screen.value;
+                let result = eval(screen.value)
                 screen.value = eval(screen.value
                     .replaceAll('sin', 'Math.sin')
                     .replaceAll('cos', 'Math.cos')
@@ -100,6 +103,8 @@
                         return factorial(parseInt(number));
                     }
                     ))
+                    screen.value = result;
+                addToHistory(expression, result);
             } catch (error) {
                 screen.value = "Error";
             }
@@ -107,13 +112,6 @@
         clearScreen.addEventListener('click', function (event) {
             screen.value = ""
         })
-
-
-
-
-
-
-
         clearCh.addEventListener('click', function (event) {
             if (screen.value.length <= 1) {
                 screen.value = '0'
