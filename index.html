@@ -69,8 +69,14 @@
         function addToHistory(expression, result) {
             let listItem = document.createElement("li");
             listItem.textContent = `${expression} = ${result}`;
+            listItem.dataset.userInput = expression;
+            listItem.addEventListener('click', addBackToScreen);
             historyList.appendChild(listItem);
         }
+        function addBackToScreen(event) {
+            screen.value = event.target.dataset.userInput;
+        }
+
 
         buttons.forEach(function (btn) {
             btn.addEventListener('click', function (event) {
@@ -90,6 +96,7 @@
         equals.addEventListener('click', function (event) {
             try {
                 let expression = screen.value;
+                let userInput = screen.value;
                 let result = eval(screen.value)
                 screen.value = eval(screen.value
                     .replaceAll('sin', 'Math.sin')
@@ -104,7 +111,8 @@
                     }
                     ))
                     screen.value = result;
-                addToHistory(expression, result);
+                    addToHistory(expression, result);
+                
             } catch (error) {
                 screen.value = "Error";
             }
