@@ -80,12 +80,12 @@
 
         buttons.forEach(function (btn) {
             btn.addEventListener('click', function (event) {
-                // console.log(/(?:\.)(?!.*(?:\+|\-|\*|\/))/.test(screen.value))
-                if (screen.value === "0") {
+                let value = event.target.dataset.number;
+                if (screen.value === "0" || screen.value==="00" || screen.value === "error") {
 
-                    screen.value = event.target.dataset.number;
+                    screen.value = value;
                 }
-                else if (event.target.dataset.number == '.' && /(?:\.)(?!.*(?:\+|\-|\*|\/))/.test(screen.value)) {
+                else if (value == '.' && /(?:\.)(?!.*(?:\+|\-|\*|\/))/.test(screen.value)) {
                     return
                 }
                 else {
