@@ -1,3 +1,5 @@
+
+/* General Body and Layout Styling */
 body {
     display: flex;
     justify-content: center;
@@ -8,50 +10,63 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+/* Calculator Container */
 .calculator {
-    border-radius: 5px;
-    /* display: flex; */
-    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+    padding: 20px;
+    width: 100%; /* Adjusted for better layout */
+    
 }
 
+/* Calculator Screen */
 .calculator-screen {
-    width: 96%;
-    height: 80px;
+    width: 95%;
+    height: 50px; /* Adjusted for better fit */
     border: none;
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
+    background-color: #d0cfcf;
+    color: #333;
     text-align: right;
-    padding: 0 10px;
+    padding: 15px;
     font-size: 2.5rem;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-radius: 8px;
+    box-shadow: inset 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    overflow: hidden; /* To avoid text spilling over */
 }
 
+/* Buttons Grid */
 .calculator-keys {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
-    padding: 20px;
-    background-color: #fff;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
 }
 
+/* Button Styling */
 button {
     height: 60px;
     border: none;
-    border-radius: 5px;
-    font-size: 1.5rem;
-    background-color: #e0e0e0;
+    border-radius: 10px;
+    font-size: 1.6rem;
+    background-color: #f1f1f1;
     color: #333;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+/* Button Hover Effects */
 button:hover {
-    background-color: #6c6a6a;
+    background-color: #d1d1d1;
+    transform: scale(1.05);
 }
 
+button:active {
+    background-color: #c0c0c0;
+    transform: scale(1);
+}
+
+/* Operator Buttons */
 .operator {
     background-color: #8d5700;
     color: white;
@@ -61,50 +76,166 @@ button:hover {
     background-color: #f57f17;
 }
 
+/* Equal Sign Button */
 .equal-sign {
     background-color: #447b46;
     color: white;
-    grid-column: span 1;
+    grid-column: span 2;
 }
 
 .equal-sign:hover {
     background-color: #00ff0d;
 }
 
+/* Clear Buttons */
 .all-clear {
     background-color: #b1524b;
     color: white;
+}
+
+.back-space{
+    background-color: #ff9b9b;
 }
 
 .all-clear:hover {
     background-color: #ff0000;
 }
 
+/* History Section */
 .history {
-    margin-left: 20px;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #cfd6ff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    text-align: left;
 }
 
 .history h2 {
-    margin: 0;
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 10px;
 }
 
+/* History List */
 .history ul {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
 .history li {
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.history {
-    width: 50%;
+.history li p {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.history li button {
+    background-color: #ff4d4d;
     border: none;
-    background-color: #cfd6ff;
-    color: rgb(0, 0, 0);
-    text-align: center;
-    padding: 0 10px;
-    font-size: 2.5rem;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    color: white;
+    font-size: 1rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.history li button:hover {
+    background-color: #e60000;
+}
+
+/* DEL Button */
+.del-button {
+    background-color: #f80000;
+    color: white;
+    font-size: 0.9rem;
+    padding: 5px 20px;
+    border-radius: 500px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.del-button:hover {
+    background-color: #e60000;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 400px) {
+    .calculator {
+        padding: 10px;
+        width: 90%;
+    }
+
+    .calculator-screen {
+        font-size: 2rem;
+    }
+
+    button {
+        font-size: 1.4rem;
+    }
+
+    .equal-sign {
+        grid-column: span 2;
+    }
+
+    .history h2 {
+        font-size: 1.5rem;
+    }
+
+    .history li p {
+        font-size: 1rem;
+    }
+}
+
+/* History List Items */
+.history li {
+    margin-bottom: 8px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+/* History Item Hover Effect */
+.history li:hover {
+    background-color: #f0f0f0; /* Light background change on hover */
+    transform: scale(1.02); /* Slight scaling effect */
+}
+
+/* History Item Text */
+.history li p {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+/* Remove Button */
+.history li button {
+    background-color: #ff4d4d;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.history li button:hover {
+    background-color: #e60000;
 }

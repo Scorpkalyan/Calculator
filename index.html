@@ -17,41 +17,47 @@
             <button type="button" class="operator calc-button" value="*" data-number="*">&times;</button>
             <button type="button" class="operator calc-button" value="/" data-number="/">&divide;</button>
 
-            <button type="button" class="calc-button" data-number="9">9</button>
-            <button type="button" class="calc-button" data-number="8">8</button>
-            <button type="button" class="calc-button" data-number="7">7</button>
-            <button type="button" class="calc-button" data-number="6">6</button>
-
-            <button type="button" class="calc-button" data-number="2">2</button>
-            <button type="button" class="calc-button" data-number="3">3</button>
-            <button type="button" class="calc-button" data-number="4">4</button>
-            <button type="button" class="calc-button" data-number="5">5</button>
-            
-            <button type="button" class="calc-button" data-number="1">1</button>
-            <button type="button" class="calc-button" data-number="0">0</button>
-            
-            <button type="button" class="decimal calc-button" data-number="." value=".">.</button>
-            <button type="button" class="all-clear" value="all-clear">AC</button>
-            
-            
             <button type="button" class="sin calc-button" data-number="sin(">Sin</button>
             <button type="button" class="cos calc-button" data-number="cos(">Cos</button>
             <button type="button" class="tan calc-button" data-number="tan(">Tan</button>
+            <button type="button" class="all-clear" value="all-clear">AC</button>
+            
+            
+            <button type="button" class="calc-button" data-number="9">9</button>
+            <button type="button" class="calc-button" data-number="8">8</button>
+            <button type="button" class="calc-button" data-number="7">7</button>
             <button type="button" class="back-space">⌫</button>
 
+
+            <button type="button" class="calc-button" data-number="6">6</button>
+            <button type="button" class="calc-button" data-number="5">5</button>
+            <button type="button" class="calc-button" data-number="4">4</button>
+
+            <button type="button" class="sq calc-button" data-number="^2">^2</button>
+            <button type="button" class="calc-button" data-number="3">3</button>
+            <button type="button" class="calc-button" data-number="2">2</button>
+            
+            <button type="button" class="calc-button" data-number="1">1</button>
+            <!-- <button type="button" class="cu calc-button" data-number="^3">^3</button> -->
+            <button type="button" class="calc-button" data-number="0">0</button>
+            
+            <button type="button" class="decimal calc-button" data-number="." value=".">.</button>
             <button type="button" class="( calc-button" data-number="(">(</button>
-            <button type="button" class=") calc-button" data-number=")">)</button>
+            <!-- <button type="button" class="cu-rt calc-button" data-number="∛(">∛</button> -->
+
             <button type="button" class="fact calc-button" data-number="!">!</button>
+            <button type="button" class=") calc-button" data-number=")">)</button>
+            <button type="button" class="sq-rt calc-button" data-number="√(">√</button>
+                        <button type="button" class="add-history calc-button" id="add-history">H+</button>
 
             <button type="button" class="equal-sign" value="=">=</button>
-            <button type="button" class="sq calc-button" data-number="^2">^2</button>
-            <button type="button" class="cu calc-button" data-number="^3">^3</button>
-            <button type="button" class="sq-rt calc-button" data-number="√(">√</button>
-            <button type="button" class="cu-rt calc-button" data-number="∛(">∛</button>
+
+
         </div>
     </div>
     <div class="history">
-        <p>History</p>
+        <p>History <button type="button" class="del-button" id="del-all-button">DEL</button>
+        </p>
         <ul id="history-list"></ul>
     </div> 
     <script src="script.js"></script>
